@@ -26,7 +26,7 @@ public class Demo_reactive extends DemoBase{
     
     @Test
     public void foo(){
-        RSetReactive<Object> set = redissonReactive.getSet("吉林");
+        RSetReactive<Object> set = clusterReactive.getSet("吉林");
         Publisher<Boolean> containPublisher = set.contains("15004925292");
         
         // java 1.8

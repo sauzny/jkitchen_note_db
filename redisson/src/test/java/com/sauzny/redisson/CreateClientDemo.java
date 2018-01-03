@@ -64,6 +64,9 @@ org.redisson.client.codec.LongCodec 纯整长型数字编码（无转换）
             .addNodeAddress("redis://192.168.73.131:7002", "redis://192.168.73.131:7003")
             .addNodeAddress("redis://192.168.73.132:7004", "redis://192.168.73.132:7005");
         
+        // csc 可以设置很多参数
+        // 连接池相关，密码，超时等信息
+        
         return Redisson.create(config);
     }
     
@@ -78,11 +81,6 @@ org.redisson.client.codec.LongCodec 纯整长型数字编码（无转换）
             .addNodeAddress("redis://192.168.73.132:7004", "redis://192.168.73.132:7005");
         
         return Redisson.createReactive(config);
-    }
-    
-    @Test
-    public void foo01(){
-        CreateClientDemo.cluster();
     }
     
 }

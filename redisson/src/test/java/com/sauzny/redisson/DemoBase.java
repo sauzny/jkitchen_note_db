@@ -2,6 +2,7 @@ package com.sauzny.redisson;
 
 import org.junit.After;
 import org.junit.Before;
+import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.api.RedissonReactiveClient;
 
@@ -12,7 +13,7 @@ public class DemoBase {
     
     public static final String[] citys = new String[]{"辽宁","吉林","黑龙江"," 河北","山西","陕西","山东","安徽","江苏","浙江","河南","湖北","湖南","江西","台湾","福建","云南","海南","四川","贵州","广东","甘肃","青海","西藏","新疆","广西","内蒙古","宁夏","北京","天津","上海","重庆"};
     
-    RedissonClient redisson;
+    RedissonClient cluster;
     
     // 异步流式处理，Demo_reactive.java
     /**
@@ -20,18 +21,21 @@ public class DemoBase {
      * 在Java 9正式发布以前，Redisson提前提供了满足该标准的程序接口。
      * 所有Redisson异步流对象都可以通过一个单独的RedissonReactiveClient接口来获取。
      */
-    RedissonReactiveClient redissonReactive;
+    RedissonReactiveClient clusterReactive;
+    
+    // 默认连接 127.0.0.1 6379
+    RedissonClient redisson = Redisson.create();
     
     @Before
     public void before(){
-        this.redisson = CreateClientDemo.cluster();
-        this.redissonReactive = CreateClientDemo.clusterReactive();
+        this.cluster = CreateClientDemo.cluster();
+        this.clusterReactive = CreateClientDemo.clusterReactive();
     }
     
     @After
     public void after(){
         // redisson 不会自动关闭，需要显示的手动关闭
-        this.redisson.shutdown();
-        this.redissonReactive.shutdown();
+        this.cluster.shutdown();
+        this.clusterReactive.shutdown();
     }
 }

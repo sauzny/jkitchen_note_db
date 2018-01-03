@@ -22,7 +22,7 @@ public class Demo_batch extends DemoBase{
         }
         */
         
-        RBatch rBatch = redisson.createBatch();
+        RBatch rBatch = cluster.createBatch();
         
         // 测试 redis集群下 batch操作的正确性
         rBatch.getSet("吉林").containsAsync("15004925292");
