@@ -14,7 +14,7 @@ import org.redisson.api.RSetReactive;
  *				 
  * @版权所有: Personal xinxin (C) 2017
  *
- * @类描述:   异步流式处理，pom引包 reactor-stream
+ * @类描述:   异步流式处理
  * 
  * @创建人:   ljx 
  *
