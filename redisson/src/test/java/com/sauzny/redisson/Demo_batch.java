@@ -37,7 +37,14 @@ public class Demo_batch extends DemoBase{
         batchResult.forEach(System.out::println);
         */
         
+        // BatchResult 实现了 List 接口
+        
         RFuture<BatchResult<?>> rFuture = rBatch.executeAsync();
         rFuture.join().forEach(System.out::println);
+        
+        // 发送指令并等待执行，但是跳过结果
+        //batch.executeSkipResult();
+        // 或
+        //batch.executeSkipResultAsync();
     }
 }
