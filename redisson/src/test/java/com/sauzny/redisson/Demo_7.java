@@ -322,12 +322,13 @@ public class Demo_7 extends DemoBase {
     }
     
     /**
+     * @throws InterruptedException 
      * @描述: 列表
      * @返回 void
      * @创建人  ljx 创建时间 2018年1月4日 下午3:14:46
      */
     @Test
-    public void foo_List(){
+    public void foo_List() throws InterruptedException{
         
         // 该对象的最大容量受Redis限制，最大元素数量是4 294 967 295个。
         
@@ -335,6 +336,16 @@ public class Demo_7 extends DemoBase {
         list.add(new SomeObject());
         list.get(0);
         list.remove(new SomeObject());
+        
+        // 我在这使用了另一个客户端 向"stringlist"中增加元素，测试效果
+        // 结果：我在另一个客户端增加元素之后，这边的输出会响应的产生变化
+        RList<String> list1 = redisson.getList("stringlist");
+        list1.add("a");
+        for(int i=0;i<10;i++){
+            Thread.sleep(6000L);
+            System.out.println(list1.get(0));
+            System.out.println(list1.size());
+        }
     }
     
     /**
