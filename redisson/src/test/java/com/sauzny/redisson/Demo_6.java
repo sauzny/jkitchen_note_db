@@ -47,7 +47,7 @@ import com.sauzny.redisson.entity.Student;
  *	
  **************************************************************************
  */
-public class Demo_object_6 extends DemoBase {
+public class Demo_6 extends DemoBase {
     
 
     /**
