@@ -24,12 +24,24 @@ public class DemoBase {
     RedissonReactiveClient clusterReactive;
     
     // 默认连接 127.0.0.1 6379
-    RedissonClient redisson = Redisson.create();
+    RedissonClient redisson;
     
     @Before
     public void before(){
+        // 这行代码 是为了验证 Redisson创建时列时，有些预热的工作
+        this.redisson = Redisson.create();
+        
+        long a = System.currentTimeMillis();
         this.cluster = CreateClientDemo.cluster();
+        long b = System.currentTimeMillis();
         this.clusterReactive = CreateClientDemo.clusterReactive();
+        long c = System.currentTimeMillis();
+        this.redisson = Redisson.create();
+        long d = System.currentTimeMillis();
+        
+        System.out.println("cluster 创建耗时：" + (b-a));
+        System.out.println("clusterReactive 创建耗时：" + (c-b));
+        System.out.println("create 创建耗时：" + (d-c));
     }
     
     @After
