@@ -34,7 +34,7 @@ import com.sauzny.redisson.entity.SomeObject;
 
 /**
  * *************************************************************************
- * @文件名称: Demo_object.java
+ * @文件名称: Demo_06.java
  *
  * @包路径  : com.sauzny.redisson 
  *				 
@@ -48,7 +48,7 @@ import com.sauzny.redisson.entity.SomeObject;
  *	
  **************************************************************************
  */
-public class Demo_6 extends DemoBase {
+public class Demo_06 extends DemoBase {
     
 
     /**

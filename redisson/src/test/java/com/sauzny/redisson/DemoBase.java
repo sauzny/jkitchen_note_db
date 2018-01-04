@@ -26,10 +26,18 @@ public class DemoBase {
     // 默认连接 127.0.0.1 6379
     RedissonClient redisson;
     
+    // 测试联锁使用的几个实例 MultiLock
+    RedissonClient redissonInstance1;
+    RedissonClient redissonInstance2;
+    RedissonClient redissonInstance3;
+    
     @Before
     public void before(){
-        // 这行代码 是为了验证 Redisson创建时列时，有些预热的工作
-        this.redisson = Redisson.create();
+        // 初始化
+        // 同时也 验证 Redisson创建时列时，有些预热的工作
+        this.redissonInstance1 = Redisson.create();
+        this.redissonInstance2 = Redisson.create();
+        this.redissonInstance3 = Redisson.create();
         
         long a = System.currentTimeMillis();
         this.cluster = CreateClientDemo.cluster();
