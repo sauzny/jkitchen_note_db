@@ -29,7 +29,8 @@ import org.redisson.api.listener.MessageListener;
 import org.redisson.api.listener.PatternMessageListener;
 import org.redisson.client.protocol.pubsub.Message;
 
-import com.sauzny.redisson.entity.Student;
+import com.sauzny.redisson.entity.AnyObject;
+import com.sauzny.redisson.entity.SomeObject;
 
 /**
  * *************************************************************************
@@ -91,21 +92,21 @@ public class Demo_6 extends DemoBase {
     public void foo_ObjectBucket(){
         
         // Redisson的分布式RBucketJava对象是一种通用对象桶可以用来存放任类型的对象。
-        RBucket<Student> bucket = redisson.getBucket("student");
+        RBucket<AnyObject> bucket = redisson.getBucket("anyObject");
         
-        bucket.set(new Student(1)); 
+        bucket.set(new AnyObject(1)); 
         System.out.println(bucket.get());
         
-        bucket.trySet(new Student(3));
+        bucket.trySet(new AnyObject(3));
         System.out.println(bucket.get());
         
-        bucket.compareAndSet(new Student(4), new Student(5));
+        bucket.compareAndSet(new AnyObject(4), new AnyObject(5));
         System.out.println(bucket.get());
 
-        bucket.compareAndSet(new Student(1), new Student(5));
+        bucket.compareAndSet(new AnyObject(1), new AnyObject(5));
         System.out.println(bucket.get());
         
-        bucket.getAndSet(new Student(6));
+        bucket.getAndSet(new AnyObject(6));
         System.out.println(bucket.get());
     }
     
@@ -125,7 +126,8 @@ public class Demo_6 extends DemoBase {
         System.out.println(new String(stream.get(), StandardCharsets.UTF_8));
         
         String newStr = "_newAnyStream";
-        
+        // wiki错误
+        // OutputStream os = stream.getOuputStream();
         OutputStream os = stream.getOutputStream();
         byte[] contentToWrite = newStr.getBytes(StandardCharsets.UTF_8);
         os.write(contentToWrite);
@@ -170,7 +172,7 @@ public class Demo_6 extends DemoBase {
         set.set(0, true);
         set.set(1812, false);
         set.clear(0);
-        // wiki 有这个代码，但是这个好像不对吧？？
+        // wiki错误 有这个代码，但是这个好像不对吧？？
         // set.addAsync("e");
         set.xor("anotherBitset");
     }
@@ -199,7 +201,7 @@ public class Demo_6 extends DemoBase {
         
         // 在Redis节点故障转移（主从切换）或断线重连以后，所有的话题监听器将自动完成话题的重新订阅。
         
-        RTopic<Student> topic = redisson.getTopic("anyTopic");
+        RTopic<SomeObject> topic = redisson.getTopic("anyTopic");
         
         /*
         topic.addListener(new MessageListener<Student>() {
@@ -214,8 +216,8 @@ public class Demo_6 extends DemoBase {
         topic.addListener( (channel, message) -> System.out.println("channel：" + channel + " message：" + message) );
         
         // 在其他线程或JVM节点
-        RTopic<Student> topic1 = redisson.getTopic("anyTopic");
-        long clientsReceivedMessage = topic1.publish(new Student());
+        RTopic<SomeObject> topic1 = redisson.getTopic("anyTopic");
+        long clientsReceivedMessage = topic1.publish(new SomeObject());
         
      // 订阅所有满足`topic2.*`表达式的话题
         RPatternTopic<Message> topic2 = redisson.getPatternTopic("topic2.*");
@@ -229,16 +231,16 @@ public class Demo_6 extends DemoBase {
     
     @Test
     public void foo_BloomFilter() {
-        RBloomFilter<Student> bloomFilter = redisson.getBloomFilter("sample");
+        RBloomFilter<SomeObject> bloomFilter = redisson.getBloomFilter("sample");
         // 初始化布隆过滤器，预计统计元素数量为55000000，期望误差率为0.03
         bloomFilter.tryInit(55000000L, 0.03);
-        bloomFilter.add(new Student("field1Value", "field2Value"));
-        bloomFilter.add(new Student("field5Value", "field8Value"));
-        boolean isResult1 =  bloomFilter.contains(new Student("field1Value", "field8Value"));
+        bloomFilter.add(new SomeObject("field1Value", "field2Value"));
+        bloomFilter.add(new SomeObject("field5Value", "field8Value"));
+        boolean isResult1 =  bloomFilter.contains(new SomeObject("field1Value", "field8Value"));
         System.out.println(isResult1);
-        boolean isResult2 =  bloomFilter.contains(new Student("field1Value", "field2Value"));
+        boolean isResult2 =  bloomFilter.contains(new SomeObject("field1Value", "field2Value"));
         System.out.println(isResult2);
-        boolean isResult3 =  bloomFilter.contains(new Student("field5Value", "field8Value"));
+        boolean isResult3 =  bloomFilter.contains(new SomeObject("field5Value", "field8Value"));
         System.out.println(isResult3);
     }
     
