@@ -68,7 +68,7 @@ public class DBUtilsDemo {
         return object;
     }
     
-    public static <T> List<T> select_bean_list(String sql, Class<T> clazz) throws SQLException{  
+    public static <T> List<T> query(String sql, Class<T> clazz) throws SQLException{  
         Connection conn = DBUtilsDemo.Connect();  
           
         //创建SQL执行工具   
