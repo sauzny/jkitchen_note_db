@@ -1,4 +1,4 @@
-package com.sauzny.dbutils.entity;
+package com.sauzny.dbutils.entity.tools;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,16 +10,6 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 public class Entity2Xml {
-
-    private static Map<String, String> typeMapping = Maps.newHashMap();
-    
-    static{
-        typeMapping.put("int","java.lang.Integer");
-        typeMapping.put("double","java.lang.Double");
-        typeMapping.put("date","java.time.LocalDate");
-        typeMapping.put("datetime","java.time.LocalDateTime");
-        typeMapping.put("varchar","java.lang.String");
-    }
 
     public static void main(String[] args) {
         
@@ -34,7 +24,7 @@ public class Entity2Xml {
                 if(dbType.indexOf("(") > 0){
                     dbType = dbType.split("\\(")[0];
                 }
-                String javaType = typeMapping.get(dbType);
+                String javaType = ToolsConstant.db2jTypeMapping.get(dbType);
                 
                 System.out.println("<column name=\""+name+"\" uniqueName=\"\" dbType=\""+dbType+"\" javaType=\""+javaType+"\" isShow=\"true\"/>");
             });

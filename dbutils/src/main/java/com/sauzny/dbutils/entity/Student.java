@@ -1,8 +1,6 @@
 package com.sauzny.dbutils.entity;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 
 import org.apache.commons.lang3.RandomUtils;
 
@@ -10,6 +8,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sauzny.dbutils.entity.randomdata.RandomPersonUtils;
 
 import lombok.Data;
 

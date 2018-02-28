@@ -1,4 +1,4 @@
-package com.sauzny.dbutils.entity;
+package com.sauzny.dbutils.entity.tools;
 
 import java.lang.reflect.Method;
 

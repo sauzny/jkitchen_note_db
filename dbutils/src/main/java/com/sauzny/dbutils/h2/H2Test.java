@@ -7,8 +7,9 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.util.List;
 
-import com.sauzny.dbutils.entity.Entity2DDL;
 import com.sauzny.dbutils.entity.LogEntity;
+import com.sauzny.dbutils.entity.tools.Entity2DDL;
+
 
 
 public class H2Test {

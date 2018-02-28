@@ -1,4 +1,4 @@
-package com.sauzny.dbutils.entity;
+package com.sauzny.dbutils.entity.randomdata;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

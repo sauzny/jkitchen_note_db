@@ -1,4 +1,4 @@
-package com.sauzny.dbutils.entity;
+package com.sauzny.dbutils.entity.randomdata;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -13,6 +13,9 @@ import org.apache.commons.lang3.RandomUtils;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
+import com.sauzny.dbutils.entity.Orders;
+import com.sauzny.dbutils.entity.Person;
+import com.sauzny.dbutils.entity.Products;
 
 public class BuildDemo {
 
