@@ -1,0 +1,6 @@
+jdbc:
+  path: 驱动jar包全路径
+  classname: 驱动Driver全类名
+  url: 数据库url
+  username: 数据库用户名
+  password: 数据库密码
